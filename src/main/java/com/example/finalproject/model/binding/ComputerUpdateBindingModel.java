@@ -8,12 +8,22 @@ import javax.validation.constraints.Positive;
 public class ComputerUpdateBindingModel {
 
     private Long id;
+    @NotNull
     private String cpu;
+    @NotNull
     private String gpu;
+    @NotNull
+    @Positive
     private int ram;
+    @NotNull
+    @Positive
     private int diskSpace;
+    @NotNull
+    @Positive
     private double price;
+    @Positive
     private int powerSupply;
+    @NotNull
     private String motherboard;
     private CityEntity city;
 

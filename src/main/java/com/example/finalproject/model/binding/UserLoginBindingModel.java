@@ -1,8 +1,12 @@
 package com.example.finalproject.model.binding;
 
+import javax.validation.constraints.NotNull;
+
 public class UserLoginBindingModel {
 
+    @NotNull
     private String username;
+    @NotNull
     private String password;
 
     public String getUsername() {

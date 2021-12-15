@@ -6,10 +6,18 @@ import javax.validation.constraints.Positive;
 public class LaptopUpdateBindingModel {
 
     private Long id;
+    @NotNull
     private String cpu;
+    @NotNull
     private String gpu;
+    @NotNull
+    @Positive
     private Integer ram;
+    @NotNull
+    @Positive
     private Integer diskSpace;
+    @NotNull
+    @Positive
     private double price;
 
     public Long getId() {

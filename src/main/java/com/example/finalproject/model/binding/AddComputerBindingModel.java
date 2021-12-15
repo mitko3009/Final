@@ -7,6 +7,7 @@ import javax.validation.constraints.Positive;
 
 public class AddComputerBindingModel {
 
+    @NotNull
     private String make;
     @NotNull
     private String model;
