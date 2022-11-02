@@ -2,6 +2,8 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
@@ -51,13 +53,12 @@
                 <div class="row d_flex">
                     <div class="col-md-5">
                         <div class="text-bg">
-                            <h1>Computer and <br>laptop shop</h1>
+                            <h1>Computer,<br>laptop and <br> periphery shop</h1>
                         </div>
                     </div>
                     <div class="col-md-7 padding_right1">
                         <div class="text-img">
                             <figure><img src="images/top_img.png" alt="#"/></figure>
-                            <h3>01</h3>
                         </div>
                     </div>
                 </div>

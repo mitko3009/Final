@@ -21,6 +21,26 @@ public class UserRegistrationBindingModel {
     private String confirmPassword;
     @Positive
     private Integer age;
+    @NotNull
+    private String email;
+    @NotNull
+    private String telNumber;
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getTelNumber() {
+        return telNumber;
+    }
+
+    public void setTelNumber(String telNumber) {
+        this.telNumber = telNumber;
+    }
 
     public String getName() {
         return name;

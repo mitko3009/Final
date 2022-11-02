@@ -41,6 +41,8 @@ public class ComputerServiceImpl implements ComputerService {
         UserEntity user = userService.findUserByUsername(username);
         ComputerEntity entity = modelMapper.map(serviceModel, ComputerEntity.class);
         entity.setSeller(user);
+        entity.setEmail(user.getEmail());
+        entity.setSellerNum(user.getTelNumber());
         computerRepository.save(entity);
     }
 
@@ -61,7 +63,8 @@ public class ComputerServiceImpl implements ComputerService {
 
     @Override
     public ComputerDetailsViewModel findComputerById(Long id) {
-      return  modelMapper.map(computerRepository.findById(id).get(),ComputerDetailsViewModel.class);
+        ComputerEntity map = computerRepository.findById(id).get();
+        return modelMapper.map(map, ComputerDetailsViewModel.class);
     }
 
     @Override
@@ -101,11 +104,26 @@ public class ComputerServiceImpl implements ComputerService {
         }
     }
 
-    private boolean isAdmin(UserEntity user) {
+    public boolean isAdmin(UserEntity user) {
         return user.
                 getRoles().
                 stream().
                 map(RoleEntity::getRole).
                 anyMatch(r -> r == Roles.ADMIN);
+    }
+
+    @Override
+    public void deleteByUserId(Long id) {
+        List<ComputerEntity> all = computerRepository.findAll();
+        List<ComputerEntity> updated = new ArrayList<>();
+
+        for (ComputerEntity entity : all) {
+            if (!entity.getSeller().getId().equals(id)){
+                updated.add(entity);
+            }
+        }
+
+        computerRepository.deleteAll();
+        computerRepository.saveAll(updated);
     }
 }

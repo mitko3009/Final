@@ -91,9 +91,9 @@ public class ComputerController {
             @PathVariable Long id,
             @Valid ComputerUpdateBindingModel computerUpdateBindingModel,
             BindingResult bindingResult,
-            RedirectAttributes redirectAttributes) {
+            RedirectAttributes redirectAttributes,Principal principal) {
 
-        if (bindingResult.hasErrors()) {
+        if (bindingResult.hasErrors() || !computerService.isOwner(principal.getName(), id)) {
 
             redirectAttributes.addFlashAttribute("offerModel", computerUpdateBindingModel);
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.offerModel", bindingResult);
@@ -116,18 +116,11 @@ public class ComputerController {
     public String delete(@PathVariable Long id, Principal principal){
 
         if (!computerService.isOwner(principal.getName(), id)) {
-           throw new RuntimeException();
+          return "redirect:/offers/allComputers";
         }
         computerService.delete(id);
 
         return "redirect:/offers/allComputers";
 
     }
-
-
-
-
-
-
-
 }

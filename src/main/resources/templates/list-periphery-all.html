@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
 <head>
     <meta charset="utf-8">
     <link rel="stylesheet" th:href="@{https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css}" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -15,36 +17,27 @@
 <div class="demo">
     <div class="container">
         <div class="row text-center">
-            <h1 class="heading-title">All users</h1><br>
-                <form th:action="@{/statistics}" th:method="get">
-<!--                    <input class="btn btn-link nav-link" style="font-size: 30px" type="submit" value="Statistics">-->
-                </form>
-
+            <h1 class="heading-title">All peripheries</h1>
         </div>
 
         <div class="row">
-            <div class="col-md-4 col-sm-6" th:each="u: ${allUsers}" th:object="${u}">
+            <div class="col-md-4 col-sm-6" th:each="p: ${allPeripheries}" th:object="${p}">
                 <div class="pricingTable">
                     <div class="pricingTable-header">
-                        <h3 class="heading" th:text="*{name}"></h3>
+                        <h3 class="heading" th:text="*{make} + ' ' + *{model}"></h3>
                     </div>
                     <ul class="pricing-content">
-                        <li th:text="|Name: *{name}|">/li>
-                        <li th:text="|Username: *{username}|"></li>
-                        <li th:text="|Age: *{age}|"></li>
-                        <li th:text="|Email: *{email}|"></li>
-                        <li th:text="|Telephone number: *{telNumber}|"></li>
-                        <li th:text="Roles"></li>
-                        <li th:each="r: ${u.roles}" th:object="${r}" th:text="*{role}"></li>
+                        <li th:text="|Type: *{type}|">/li>
+                        <li th:text="|Price: *{price}|"></li>
+                        <li th:text="|Seller: *{seller.getName()}|"></li>
+                        <li th:text="|Email: *{sellerEmail}|"></li>
+                        <li th:text="|Telephone number: *{sellerNum}|"></li>
 
                     </ul>
-                    <a th:href="@{/users/delete/{id}(id=*{id})}" class="read">Remove user<i class="fa fa-angle-right"></i></a>
-
+                    <a th:href="@{/periphery/{id}/edit(id=*{id})}" class="read">Edit<i class="fa fa-angle-right"></i></a><br><br>
+                    <a th:href="@{/periphery/{id}/delete(id=*{id})}" class="read">Delete<i class="fa fa-angle-right"></i></a>
                 </div>
             </div>
-
-
-
         </div>
     </div>
 </div>

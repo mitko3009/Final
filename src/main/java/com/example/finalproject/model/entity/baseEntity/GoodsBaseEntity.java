@@ -18,10 +18,28 @@ public class GoodsBaseEntity extends BaseEntity{
     @Column(name = "disk_space")
     private Integer diskSpace;
     private double price;
+    private String sellerNum;
+    private String email;
     @ManyToOne
     private UserEntity seller;
     @ManyToOne
     private CityEntity city;
+
+    public String getSellerNum() {
+        return sellerNum;
+    }
+
+    public void setSellerNum(String sellerNum) {
+        this.sellerNum = sellerNum;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String sellerEmail) {
+        this.email = sellerEmail;
+    }
 
     public CityEntity getCity() {
         return city;

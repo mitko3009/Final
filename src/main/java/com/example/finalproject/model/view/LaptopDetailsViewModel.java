@@ -17,8 +17,26 @@ public class LaptopDetailsViewModel {
     private Integer diskSpace;
     private double price;
     private String sellerName;
+    private String sellerNum;
+    private String sellerEmail;
     private double monitorSize;
     private CityEntity city;
+
+    public String getSellerNum() {
+        return sellerNum;
+    }
+
+    public void setSellerNum(String sellerNum) {
+        this.sellerNum = sellerNum;
+    }
+
+    public String getSellerEmail() {
+        return sellerEmail;
+    }
+
+    public void setSellerEmail(String sellerEmail) {
+        this.sellerEmail = sellerEmail;
+    }
 
     public CityEntity getCity() {
         return city;

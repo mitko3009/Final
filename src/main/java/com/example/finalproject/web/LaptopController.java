@@ -96,9 +96,9 @@ public class LaptopController {
             @PathVariable Long id,
             @Valid LaptopUpdateBindingModel laptopUpdateBindingModel,
             BindingResult bindingResult,
-            RedirectAttributes redirectAttributes) {
+            RedirectAttributes redirectAttributes,Principal principal) {
 
-        if (bindingResult.hasErrors()) {
+        if (bindingResult.hasErrors() || !laptopService.isOwner(principal.getName(), id)) {
 
             redirectAttributes.addFlashAttribute("offerModel", laptopUpdateBindingModel);
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.offerModel", bindingResult);
@@ -121,7 +121,7 @@ public class LaptopController {
     public String delete(@PathVariable Long id, Principal principal){
 
         if (!laptopService.isOwner(principal.getName(), id)) {
-            throw new RuntimeException();
+            return "redirect:/offers/allLaptops";
         }
         laptopService.delete(id);
 

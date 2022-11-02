@@ -4,6 +4,9 @@ import com.example.finalproject.model.binding.UserLoginBindingModel;
 import com.example.finalproject.model.binding.UserRegistrationBindingModel;
 import com.example.finalproject.model.service.UserRegisterServiceModel;
 import com.example.finalproject.model.view.UserViewModel;
+import com.example.finalproject.service.ComputerService;
+import com.example.finalproject.service.LaptopService;
+import com.example.finalproject.service.PeripheryService;
 import com.example.finalproject.service.UserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
@@ -22,10 +25,17 @@ public class UserController {
 
     private ModelMapper modelMapper;
     private UserService userService;
+    private PeripheryService peripheryService;
+    private LaptopService laptopService;
+    private ComputerService computerService;
 
-    public UserController(ModelMapper modelMapper, UserService userService) {
+    public UserController(ModelMapper modelMapper, UserService userService, PeripheryService peripheryService,
+                          LaptopService laptopService, ComputerService computerService) {
         this.modelMapper = modelMapper;
         this.userService = userService;
+        this.peripheryService = peripheryService;
+        this.laptopService = laptopService;
+        this.computerService = computerService;
     }
 
     @GetMapping("/login")
@@ -43,7 +53,7 @@ public class UserController {
                                BindingResult bindingResult, RedirectAttributes redirectAttributes) {
 
         if (bindingResult.hasErrors() || !bindingModel.getPassword().equals(bindingModel.getConfirmPassword())
-        || !userService.loginAndRegisterUser(modelMapper.map(bindingModel,UserRegisterServiceModel.class))) {
+                || !userService.loginAndRegisterUser(modelMapper.map(bindingModel, UserRegisterServiceModel.class))) {
             redirectAttributes.addFlashAttribute("bindingModel", bindingModel);
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.userModel", bindingResult);
 
@@ -81,8 +91,11 @@ public class UserController {
     }
 
     @GetMapping("/delete/{id}")
-    public String delete(@PathVariable Long id){
+    public String delete(@PathVariable Long id) {
 
+        peripheryService.deleteByUserId(id);
+        laptopService.deleteByUserId(id);
+        computerService.deleteByUserId(id);
         userService.deleteUser(id);
 
         return "redirect:/users/allUsers";

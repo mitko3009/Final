@@ -32,10 +32,12 @@
                         <li th:text="|Ram: *{ram}|"></li>
                         <li th:text="|Disk sapce: *{diskSpace}|">/li>
                         <li th:text="|Display size: *{monitorSize}|">/li>
-                        <li th:text="|Seller: *{sellerName}|"></li>
                         <li th:text="|Price: *{price}|"></li>
                         <li th:text="|Region: *{city.region}|"></li>
                         <li th:text="|City: *{city.name}|"></li>
+                        <li th:text="|Seller: *{sellerName}|"></li>
+                        <li th:text="|Email: *{sellerEmail}|"></li>
+                        <li th:text="|Telephone number: *{sellerNum}|"></li>
                     </ul>
                     <a th:href="@{/offers/laptops/{id}/edit(id=*{id})}" class="read">Edit<i class="fa fa-angle-right"></i></a><br><br>
                     <a th:href="@{/offers/laptops/{id}/delete(id=*{id})}" class="read">Delete<i class="fa fa-angle-right"></i></a>

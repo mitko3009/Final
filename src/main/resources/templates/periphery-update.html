@@ -16,7 +16,8 @@
     <link th:href="@{/vendor/mdi-font/css/material-design-iconic-font.min.css}" rel="stylesheet" media="all">
     <link th:href="@{vendor/font-awesome-4.7/css/font-awesome.min.css}" rel="stylesheet" media="all">
     <!-- Font special for pages-->
-    <link th:href="@{https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i}" rel="stylesheet">
+    <link th:href="@{https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i}"
+          rel="stylesheet">
 
     <!-- Vendor CSS-->
     <link th:href="@{/vendor/select2/select2.min.css}" rel="stylesheet" media="all">
@@ -27,56 +28,47 @@
 </head>
 
 <body>
-<div class="page-wrapper bg-blue p-t-100 p-b-100 font-robo" style="background-image: url('/images/top_img.png');">
+<div class="page-wrapper bg-blue p-t-100 p-b-100 font-robo" style="background-image: url('/images/periphery_background.png');">
     <div class="wrapper wrapper--w680">
         <div class="card card-1">
             <div class="card-heading"></div>
             <div class="card-body">
-                <h2 class="title">Laptop Info</h2>
+                <h2 class="title">Item Info</h2>
                 <form
-                        th:object="${laptopModel}"
-                        th:action="@{/offers/laptops/{id}/edit(id=*{id})}"
-                        th:method="patch"
-                        >
+                        th:object="${peripheryModel}"
+                        th:action="@{/periphery/{id}/edit(id=*{id})}"
+                        th:method="patch" >
+
+                    <div class="row row-space">
+                        <div class="col-2">
+                            <label>Make</label>
+                            <div class="input-group">
+                                <input class="input--style-1 js-datepicker" th:field="*{make}" type="text" name="make">
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="row row-space">
                         <div class="col-2">
                             <div class="input-group">
-                                <label>Cpu</label>
-                                <input class="input--style-1 js-datepicker" th:field="*{cpu}" type="text" name="cpu">
+                                <label>Model</label>
+                                <input class="input--style-1 js-datepicker" th:field="*{model}" type="text" name="model">
                             </div>
                         </div>
+
                     </div>
                     <div class="row row-space">
-                        <div class="col-2">
-                            <div class="input-group">
-                                <label>Gpu</label>
-                                <input class="input--style-1 js-datepicker" th:field="*{gpu}" type="text" name="gpu">
-                            </div>
-                        </div>
-                        <div class="col-2">
-                            <div class="input-group">
-                                <label>Ram</label>
-                                <input class="input--style-1 js-datepicker" th:field="*{ram}" type="text" name="memory">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row row-space">
-                        <div class="col-2">
-                            <div class="input-group">
-                                <label>Disk space</label>
-                                <input class="input--style-1 js-datepicker" th:field="*{diskSpace}" type="text" name="diskspace">
-                            </div>
-                        </div>
                         <div class="col-2">
                             <div class="input-group">
                                 <label>Price</label>
-                                <input class="input--style-1 js-datepicker" th:field="*{price}" type="text" name="price">
+                                <label>
+                                    <input class="input--style-1 js-datepicker" th:field="*{price}" th:errorclass="is-invalid" type="text" name="price">
+                                </label>
                             </div>
                         </div>
                     </div>
                     <div class="p-t-20">
-                        <input class="btn btn--radius btn--green" type="submit" value="Update Offer"/>
+                        <button class="btn btn--radius btn--green" type="submit">Update offer</button>
                     </div>
                 </form>
             </div>

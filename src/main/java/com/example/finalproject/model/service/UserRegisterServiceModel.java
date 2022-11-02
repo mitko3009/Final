@@ -6,6 +6,24 @@ public class UserRegisterServiceModel {
     private String username;
     private String password;
     private Integer age;
+    private String email;
+    private String telNumber;
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getTelNumber() {
+        return telNumber;
+    }
+
+    public void setTelNumber(String telNumber) {
+        this.telNumber = telNumber;
+    }
 
     public String getName() {
         return name;

@@ -69,6 +69,8 @@ public class UserServiceImpl implements UserService {
         newUser.setAge(userSeviceModel.getAge());
         newUser.setName(userSeviceModel.getName());
         newUser.setRoles(roles);
+        newUser.setEmail(userSeviceModel.getEmail());
+        newUser.setTelNumber(userSeviceModel.getTelNumber());
 
         userRepository.save(newUser);
 

@@ -29,7 +29,7 @@
 </head>
 
 <body>
-    <div class="page-wrapper bg-blue p-t-100 p-b-100 font-robo">
+    <div class="page-wrapper bg-blue p-t-100 p-b-100 font-robo" style="background-image: url('/images/bg-01.jpg');">
         <div class="wrapper wrapper--w680">
             <div class="card card-1">
                 <div class="card-heading"></div>
@@ -91,6 +91,28 @@
                                                 name="confirmPaassword">
                                     </div>
                                 </div>
+                        </div>
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <input
+                                            class="input--style-1 js-datepicker"
+                                            th:field="*{telNumber}"
+                                            type="text"
+                                            placeholder="Telephone number"
+                                            name="telNumber">
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <input
+                                            class="input--style-1 js-datepicker"
+                                            th:field="*{email}"
+                                            type="text"
+                                            placeholder="Email"
+                                            name="email">
+                                </div>
+                            </div>
                         </div>
                         <div class="p-t-20">
                             <button class="btn btn--radius btn--green" type="submit">Register</button>

@@ -10,7 +10,25 @@ public class UserViewModel {
     private String name;
     private String username;
     private Integer age;
+    private String email;
+    private String telNumber;
     private List<RoleEntity> roles;
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getTelNumber() {
+        return telNumber;
+    }
+
+    public void setTelNumber(String telNumber) {
+        this.telNumber = telNumber;
+    }
 
     public Long getId() {
         return id;

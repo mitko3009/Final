@@ -1,5 +1,6 @@
 package com.example.finalproject.web;
 
+import com.example.finalproject.model.view.StatsView;
 import com.example.finalproject.service.StatsService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,11 +21,8 @@ public class StatsController {
   }
 
   @GetMapping("/statistics")
-  public ResponseEntity<ModelAndView> statistics() {
-    ModelAndView modelAndView = new ModelAndView();
-    modelAndView.addObject("stats", statsService.getStats());
-    modelAndView.setViewName("stats");
-    return new ResponseEntity(modelAndView, HttpStatus.OK);
+  public ResponseEntity<StatsView> statistics() {
+    return ResponseEntity.ok(statsService.getStats());
   }
 
 }

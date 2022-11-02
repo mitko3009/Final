@@ -1,6 +1,5 @@
 package com.example.finalproject.service.impl;
 
-import com.example.finalproject.model.entity.ComputerEntity;
 import com.example.finalproject.model.entity.LaptopEnity;
 import com.example.finalproject.model.entity.RoleEntity;
 import com.example.finalproject.model.entity.UserEntity;
@@ -39,7 +38,10 @@ public class LaptopServiceImpl implements LaptopService {
     @Override
     public void addLaptop(LaptopServiceModel laptopServiceModel,String username) {
         LaptopEnity entity = modelMapper.map(laptopServiceModel, LaptopEnity.class);
-        entity.setSeller(userService.findUserByUsername(username));
+        UserEntity user = userService.findUserByUsername(username);
+        entity.setEmail(user.getEmail());
+        entity.setSellerNum(user.getTelNumber());
+        entity.setSeller(user);
         laptopRepository.save(entity);
     }
 
@@ -107,5 +109,20 @@ public class LaptopServiceImpl implements LaptopService {
                 stream().
                 map(RoleEntity::getRole).
                 anyMatch(r -> r == Roles.ADMIN);
+    }
+
+    @Override
+    public void deleteByUserId(Long id) {
+        List<LaptopEnity> all = laptopRepository.findAll();
+        List<LaptopEnity> updated = new ArrayList<>();
+
+        for (LaptopEnity enity : all) {
+            if (!enity.getSeller().getId().equals(id)){
+                updated.add(enity);
+            }
+        }
+
+        laptopRepository.deleteAll();
+        laptopRepository.saveAll(updated);
     }
 }

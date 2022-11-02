@@ -14,6 +14,7 @@ public interface LaptopService {
 
     LaptopDetailsViewModel findLaptopById(Long id);
     void update(LaptopUpdateServiceModel laptopUpdateServiceModel);
+    void deleteByUserId(Long id);
 
     void delete(Long id);
     boolean isOwner(String userName, Long id);
